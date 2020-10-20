@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'TestController@index')->name('test');
+
+Route::post('/message', 'TestController@sendMessage')->name('send-message');

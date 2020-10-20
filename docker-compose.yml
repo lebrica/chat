@@ -6,11 +6,13 @@ services:
       dockerfile: docker/Dockerfile
     restart: unless-stopped
     tty: true
+    ports:
+    - "8080:8080"
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
       APP_DEBUG: 'true'
-      PHP_IDE_CONFIG: "serverName=docker"
+      PHP_IDE_CONFIG: "serverName=Docker"
     working_dir: /var/www
     volumes:
       - ./:/var/www
@@ -47,7 +49,7 @@ services:
       SERVICE_NAME: mysql
       SERVICE_TAGS: dev
     volumes:
-      - dbdata:/var/lib/mysql
+      - ./dbdata:/var/lib/mysql
       - ./docker/config/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - chat-network
@@ -57,10 +59,10 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "6479:6379"
+      - "6379:6379"
     volumes:
-      - /path/to/redis-persistence:/var/www/bitnami
-      - REDIS_PASSWORD=redis
+      - ./redisdata:/data
+      - ./docker/config/redis/redis.conf:/usr/local/etc/redis/redis.conf
     networks:
       - chat-network
 
