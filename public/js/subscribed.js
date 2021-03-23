@@ -4,9 +4,9 @@ $(document).ready(function () {
         {
             console.log('connect')
 
-            session.subscribe('chat1', function (topic, data) {
+            session.subscribe('chat', function (channel, data) {
                 console.log(data.message);
-                notification(data.message);
+                message(data.message, data.name);
             });
         },
 
@@ -23,10 +23,9 @@ $(document).ready(function () {
     );
 });
 
-function notification(mess)
+function message(mess, name)
 {
-    $('.chat').append("<p>"+ mess +"</p>");
-    $('#message').val('');
+    $('.chat').append("<p>"+ name + ": " + mess +"</p>");
 }
 
 
