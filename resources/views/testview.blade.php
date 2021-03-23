@@ -19,7 +19,7 @@
             <h1>Welcome to Chat</h1>
         </div>
         <div class="form-group col-md-6">
-            <form action="{{ route('send-message') }}" method="post" class="form">
+            <form id="message-form" action="{{ route('send-message') }}" method="post" class="form">
                  {{ csrf_field() }}
 
                 <textarea class="form-control" name="message" id="message" cols="5" rows="2"></textarea>
