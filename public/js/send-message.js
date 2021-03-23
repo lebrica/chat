@@ -1,4 +1,4 @@
-$('#message-form).on('submit', function (event) {
+$('#message-form').on('submit', function (event) {
     event.preventDefault();
     var message = $('#message');
     var form = $(this);
