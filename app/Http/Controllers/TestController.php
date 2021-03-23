@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redis;
 use App\Components\Socket\Pusher;
+use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -13,16 +14,16 @@ class TestController extends Controller
         return view('testview');
     }
 
-    public function sendMessage()
+    public function sendMessage(Request $request)
     {
-        $message = $_POST['message'];
+        $message = $request->input('message');
+        $userName = \Auth::user()->name;
         $data = [
-          'message' =>$message,
-          'channel' => 'chat1'
+            'name' => $userName,
+            'message' =>$message,
+            'channel' => 'chat'
         ];
 
         Pusher::sendDataToServer($data);
-
-        echo json_encode($data);
     }
 }
